@@ -1,0 +1,38 @@
+.content-wrapper {
+  padding: 24px;
+}
+
+.login-cto-header {
+  text-align: center;
+  padding: 0 64px;
+
+  .login-cto-text {
+    font-weight: 700;
+    font-size: 22px;
+    line-height: 1.1;
+  }
+}
+
+.login-button {
+  height: 50px;
+  width: 100%;
+}
+
+.login-options-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: var(--ion-color-step-650); 
+}
+
+.remind-me-option {
+  display: flex;
+  align-items: center;
+  ion-label {
+    padding-left: 8px;
+  }
+}
+
+.signup-cto {
+  padding-top: 50px;
+}

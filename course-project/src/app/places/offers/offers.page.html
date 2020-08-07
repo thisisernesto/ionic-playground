@@ -1,5 +1,62 @@
+<ion-toolbar color="primary" class="toolbar">
+
+  <ion-buttons slot="start">
+    <ion-menu-button 
+    auto-hide="false" 
+    mode="ios"
+    menu="side-menu"
+    ></ion-menu-button>
+  </ion-buttons>
+
+  <ion-buttons slot="end" mode="ios">
+    <ion-button routerLink="/places/tabs/offers/new">
+      <ion-icon name="add" class="add-icon"></ion-icon>
+      <ion-label>New Offer</ion-label>
+    </ion-button>
+  </ion-buttons>
+</ion-toolbar>
+
 <ion-content>
-  <ion-header mode="ios">
-    <h1 class="header-title">Offer your place</h1>
+
+  <ion-header class="header" mode="ios">
+    
+    <ion-text>
+      <h1 class="header-title">Offer your place</h1>
+      <h5 class="header-subtitle">
+        Rent your house, apartment or room for free and without fees.
+      </h5>
+    </ion-text>
+
   </ion-header>
+
+
+  <div>
+    <ion-text>
+      <h4 class="ion-padding">Your current offers:</h4>
+    </ion-text>
+  </div>
+  <ion-grid>
+    <ion-row>
+      <ion-col size="12" size-sm="8" offset-sm="2">
+        <ion-list>
+
+          <ion-item
+            lines="none"
+            detail
+            *ngFor="let offer of offers"
+            [routerLink]="['/', 'places', 'tabs', 'offers', offer.id]"
+          >
+            <ion-thumbnail slot="start">
+              <ion-img [src]="offer.imageUrl"></ion-img>
+            </ion-thumbnail>
+            <ion-label>
+              <h2>{{ offer.title }}</h2>
+            </ion-label>
+          </ion-item>
+
+        </ion-list>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
 </ion-content>

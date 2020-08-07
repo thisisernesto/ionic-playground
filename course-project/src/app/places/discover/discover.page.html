@@ -1,9 +1,20 @@
+<ion-toolbar color="primary" class="toolbar">
+  <ion-buttons slot="start">
+    <ion-menu-button 
+    auto-hide="false" 
+    mode="ios"
+    menu="side-menu"
+    ></ion-menu-button>
+  </ion-buttons>
+  <ion-searchbar placeholder="Find new locations" animated mode="ios"></ion-searchbar>
+</ion-toolbar>
+
 <ion-content>
   
   <ion-header class="header" mode="ios">
     
     <ion-text>
-      <h1 class="header-title">Discover New Places</h1>
+      <h1 class="header-title">Discover new places</h1>
       <h5 class="header-subtitle">Navigate trough a curated selection of amazing places for your next trip!</h5>
     </ion-text>
 
@@ -13,7 +24,7 @@
     <ion-row>
       <ion-col size="12" size-sm="8" offset-sm="2" class="ion-text-center">
 
-        <ion-card>
+        <ion-card mode="ios">
           <ion-card-header>
             <ion-card-title>{{ loadedPlaces[0].title }}</ion-card-title>
             <ion-card-subtitle>{{ loadedPlaces[0].price | currency}} / Night</ion-card-subtitle>
@@ -43,6 +54,7 @@
         <ion-list>
           <ion-item 
           detail
+          lines="none"
           *ngFor="let place of loadedPlaces.slice(1)"
           [routerLink]="['/', 'places', 'tabs', 'discover', place.id]">
             <ion-thumbnail slot="start">

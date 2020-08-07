@@ -1,3 +1,11 @@
+.toolbar {
+  padding: 0 16px;
+
+  ion-searchbar {
+    padding: 0 0 0 8px;
+  }
+}
+
 .header {
   text-align: center;
   padding: 0 28px;
@@ -8,8 +16,7 @@
     line-height: 0.9;
   }
   .header-subtitle {
-    color: var(--ion-border-color);
-
+    color: var(--ion-color-step-650);
   }
 }
 

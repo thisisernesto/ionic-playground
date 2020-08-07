@@ -1,7 +1,20 @@
-.header-title {
+.toolbar {
+  padding: 0 16px;
+  .add-icon {
+    padding-right: 8px;
+  }
+}
+
+.header {
   text-align: center;
-  font-size: 46px;
   padding: 0 28px;
-  font-weight: 700;
-  line-height: 0.9;
+  
+  .header-title {
+    font-size: 46px;
+    font-weight: 700;
+    line-height: 0.9;
+  }
+  .header-subtitle {
+    color: var(--ion-color-step-750);
+  }
 }
