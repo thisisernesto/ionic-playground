@@ -1,5 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { NavController } from '@ionic/angular';
+import { NavController, ModalController } from '@ionic/angular';
+import { ActivatedRoute } from '@angular/router';
+
+import { PlacesService } from '../../places.service';
+import { Place } from '../../place.model';
+import { CreateBookingComponent } from '../../../bookings/create-booking/create-booking.component';
+
 
 @Component({
   selector: 'app-place-detail',
@@ -7,24 +13,51 @@ import { NavController } from '@ionic/angular';
   styleUrls: ['./place-detail.page.scss'],
 })
 export class PlaceDetailPage implements OnInit {
+  place: Place;
 
   constructor(
     /* NavController ensures that when the "Book" button is clicked, 
     the user gets back to the last page on the stack, instead of using
     Angular's own routing solution. */
-
+    
     // private router: Router
-    private navCtrl: NavController) {}
+    private navCtrl: NavController,
+    private route: ActivatedRoute,
+    private placesService: PlacesService,
+    private modalCtrl: ModalController
+  ) {}
 
   ngOnInit() {
+    this.route.paramMap.subscribe(paramMap => {
+      if (!paramMap.has('placeId')) {
+        this.navCtrl.navigateBack('/places/tabs/discover');
+        return;
+      }
+      this.place = this.placesService.getPlace(paramMap.get('placeId'));
+    });
   }
 
   onBookPlace() {
     // this.router.navigateByUrl('/places/tabs/discover')
-    this.navCtrl.navigateBack('places/tabs/discover')
-    this.navCtrl.pop()
+    // this.navCtrl.navigateBack('places/tabs/discover')
+    // this.navCtrl.pop()
     /* We could also use the pop method, but it's unreliable if you can't garantee
     the existence of the page it should be pointing to in that context. */
+    
+    this.modalCtrl.create({
+      component: CreateBookingComponent, 
+      componentProps: {selectedPlace: this.place }
+    }).then(modalEl => {
+      modalEl.present()
+      return modalEl.onDidDismiss()
+    })
+    .then(resultData => {
+      console.log(resultData.data, resultData.role)
+      if (resultData.role === 'confirm') {
+        console.log('Booked!')
+      }
+    })
+    /* This is responsible for creating a modal */
   }
 
 }
